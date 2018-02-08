@@ -1,0 +1,35 @@
+<h1>Exercice 2</h1>
+<div class="list-group">
+  <div class="list-group-item">
+    <div class="list-group-item-heading">
+      {{plural model.countActive
+               "aucun service sélectionné"
+               "un seul service sélectionné"
+               "services sélectionnés"
+      }}
+    </div>
+  </div>
+  {{#each model.services as |service|}}
+    <div class="list-group-item list-group-item-info {{if service.active "active" "disabled"}}" {{action "toggleActive" service}}>
+      {{service.name}}
+      <span class="badge">{{format-currency service.price}}</span>
+    </div>
+  {{/each}}
+  <div class="list-group-item list-group-item-info">
+    Total <span class="badge">{{format-currency model.sumActive}}</span>
+  </div>
+<div class="list-group-item">
+  <div class="input-group">
+    <span class="input-group-addon">
+      <input type="checkbox" aria-label="...">
+    </span>
+    {{input value=model.promo type="text" class="form-control"}}
+  </div>
+</div>
+<div class="list-group-item">
+  {{model.txRemise}}
+</div>
+  <div class="list-group-item">
+    {{format-currency model.prixFinal}}
+  </div>
+</div>
