@@ -1,0 +1,29 @@
+<h1>TP2</h1>
+<div class="row">
+  <div class="col">
+    {{multi-select elements=model.dispoItems
+                   selectedIds=model.selectedDispoItemsIds}}
+  </div>
+  <div class="col-1">
+    <button {{action "addTo" model.dispoItems model.includedItems model.selectedDispoItems}} class="btn btn-primary btn-block">
+      {{fa-icon "step-forward"}}
+    </button><br>
+    <button {{action "addTo" model.dispoItems model.includedItems model.selectedDispoItems}} class="btn btn-primary btn-block">
+      {{fa-icon "fast-forward"}}
+    </button><br>
+    <button {{action "addTo" model.dispoItems model.includedItems model.selectedDispoItems}} class="btn btn-primary btn-block">
+      {{fa-icon "step-backward"}}
+    </button><br>
+    <button {{action "addTo" model.dispoItems model.includedItems model.selectedDispoItems}} class="btn btn-primary btn-block">
+      {{fa-icon "fast-backward"}}
+    </button><
+
+  </div>
+  <div class="col">
+    {{multi-select elements=model.includedItems
+                   selectedIds=model.selectedIncludedItemsIds}}
+    {{#each model.selectedDispoItemsIds as |id|}}
+      {{id}}<br>
+    {{/each}}
+  </div>
+</div>
