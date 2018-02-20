@@ -1,5 +1,23 @@
 <h1>TP 2_3</h1>
 <div class="row">
-  <input type="text" name="nom" class="form-control"/><br>
-  <input type="submit" name="ajouter" value="ajouter" class="btn btn-primary"/>
+  <input type="text" class="form-control"/><br>
+  <div class="container">
+    {{#each model.datas as |contact|}}
+      <div class="list-group-item list-group-item-info">
+        <div class="row">
+          <div class="col">
+            {{contact.nom}}
+          </div>
+          <div class="col">
+            {{contact.prenom}}
+          </div>
+          <div class="col">
+            {{contact.email}}
+          </div>
+          <button class="badge" {{action "delete" contact}} > {{fa-icon "trash-alt"}}</button><br>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <button class="btn btn-primary" {{action "addContact"}} >Ajouter</button>
 </div>

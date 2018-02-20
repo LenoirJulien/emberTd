@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('ex3');
   this.route('td2');
   this.route('td2_3');
+  this.route('add');
 });
 
 export default Router;

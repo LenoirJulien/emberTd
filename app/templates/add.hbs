@@ -1,0 +1,16 @@
+<a class="btn btn-dark" href="#" {{action "addNew"}}>
+  ajouter un contact
+</a>
+<div class="list-group">
+  {{#each model as |contact|}}
+    <div class="list-group-item">
+      {{contact.nom}}&nbsp
+      {{contact.prenom}}&nbsp
+
+    </div>
+  {{else}}
+    <div class="alert alert-info">
+      Aucun contact à affciher
+    </div>
+  {{/each}}
+</div>
