@@ -1,10 +1,16 @@
 import Route from '@ember/routing/route';
 
-const Data = Object.extend({
-  contacts: Ember.computed('filter','datas.@each.deleted',function(){
-
+const Data = Ember.Object.extend({
+  contacts: Ember.computed('filter','datas.@each.isDeleted',function(){
+    let notDeleted = this.get('datas').filterBy('deleted',false);
+    let filter = this.get('filter');
+    if(filter){
+      return notDeleted.filter(
+        (item)=>{return item.get('nom').includes(filter) || item.get('prenom').includes(filter) || item.get('email').includes(filtrer);}
+      );
+    }
   })
-})
+});
 
 const Listes = Ember.Object.extend({
   datas:[],
@@ -35,13 +41,21 @@ export default Route.extend({
         }
       ],
       action:{
+        addnew:function(){
+          let store = this.get('store');
+          let c = Object.create({
+            "nom":"Smith"
+          })
+          let contact = store .createRecord(c);
+          contact.save();
+        },
         delete:function(contact){
-          deleteds.pushObjects(contacts);
-          datas.removeObjects(contacts);
+          contact.deleteRecord();
         },
         cancelDeletion:function(deleteds){
-
-
+          deleteds.forEach(
+            (item)=>{item.rollbackAttribute();}
+          );
         }
       }
     })
